@@ -776,7 +776,7 @@ class TuneController:
             self._pending_trials or self._running_trials or self._paused_trials
         )
 
-        print("_maybe_update_trial_queue BBBBBB", self._pending_trials, self._max_pending_trials)
+        print("_maybe_update_trial_queue BBBBBB", len(self._pending_trials), self._max_pending_trials)
         while len(self._pending_trials) < self._max_pending_trials:
             if not self._update_trial_queue(blocking=not dont_wait_for_trial):
                 break
