@@ -87,7 +87,6 @@ class TuneController:
         resource_manager_factory: Optional[Callable[[], ResourceManager]] = None,
         _trainer_api: bool = False,
     ):
-        print("BBBBBBBBBB")
         if resource_manager_factory:
             resource_manager = resource_manager_factory()
         else:
@@ -554,7 +553,6 @@ class TuneController:
             self._resources_to_pending_trials[trial.placement_group_factory].add(trial)
 
     def _update_trial_queue(self, blocking: bool = False, timeout: int = 600) -> bool:
-        print("aaaaaaaaa")
         """Adds next trials to queue if possible.
 
         Note that the timeout is currently unexposed to the user.
@@ -568,6 +566,7 @@ class TuneController:
             Boolean indicating if a new trial was created or not.
         """
         trial = self._search_alg.next_trial()
+        print("_update_trial_queue AAAAAA", trial)
         if blocking and not trial:
             start = time.time()
             # Checking `is_finished` instead of _search_alg.is_finished
@@ -777,6 +776,7 @@ class TuneController:
             self._pending_trials or self._running_trials or self._paused_trials
         )
 
+        print("_maybe_update_trial_queue BBBBBB", self._pending_trials, self._max_pending_trials)
         while len(self._pending_trials) < self._max_pending_trials:
             if not self._update_trial_queue(blocking=not dont_wait_for_trial):
                 break
@@ -2121,7 +2121,7 @@ def _get_max_pending_trials(search_alg: SearchAlgorithm) -> int:
     # This is because we don't want to generate too many trials
     # before we fit the searcher model.
     if not isinstance(search_alg, BasicVariantGenerator):
-        return 1
+        return 50
 
     # Allow up to at least 200 pending trials to trigger fast autoscaling
     min_autoscaling_rate = 200
