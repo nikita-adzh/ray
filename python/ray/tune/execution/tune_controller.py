@@ -553,6 +553,7 @@ class TuneController:
             self._resources_to_pending_trials[trial.placement_group_factory].add(trial)
 
     def _update_trial_queue(self, blocking: bool = False, timeout: int = 600) -> bool:
+        print("aaaaaaaaa")
         """Adds next trials to queue if possible.
 
         Note that the timeout is currently unexposed to the user.
