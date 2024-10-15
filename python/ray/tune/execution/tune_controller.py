@@ -87,6 +87,7 @@ class TuneController:
         resource_manager_factory: Optional[Callable[[], ResourceManager]] = None,
         _trainer_api: bool = False,
     ):
+        print("BBBBBBBBBB")
         if resource_manager_factory:
             resource_manager = resource_manager_factory()
         else:

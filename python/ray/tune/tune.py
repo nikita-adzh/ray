@@ -496,6 +496,8 @@ def run(
     # remote_run_kwargs must be defined before any other
     # code is ran to ensure that at this point,
     # `locals()` is equal to args and kwargs
+    print("CCCCCCCC")
+
     remote_run_kwargs = locals().copy()
     remote_run_kwargs.pop("_remote")
 

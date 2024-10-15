@@ -644,6 +644,7 @@ class ProgressReporter(Callback):
     ):
         self._start_block("exp_start")
         print(f"\nView detailed results here: {experiment_path}")
+        print(f"\noooooooooooo")
 
         if tensorboard_path:
             print(
